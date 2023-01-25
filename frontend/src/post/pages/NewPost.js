@@ -86,7 +86,7 @@ const NewPost = () => {
           onInput={inputHandler}
         />
         <Button type="submit" disabled={!formState.isValid}>
-          ADD PLACE
+          ADD POST
         </Button>
       </form>
     </React.Fragment>

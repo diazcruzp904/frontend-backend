@@ -7,9 +7,6 @@ import {
 } from 'react-router-dom';
 
 import Users from './user/pages/Users';
-import NewPlace from './places/pages/NewPlace';
-import UserPlaces from './places/pages/UserPlaces';
-import UpdatePlace from './places/pages/UpdatePlace';
 import NewPost from './post/pages/NewPost';
 import UserPost from './post/pages/UserPost';
 import UpdatePost from './post/pages/UpdatePost';

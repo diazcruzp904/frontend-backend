@@ -10,8 +10,8 @@ const PostList = props => {
     return (
       <div className="post-list center">
         <Card>
-          <h2>No places found. Maybe create one?</h2>
-          <Button to="/post/new">Share Place</Button>
+          <h2>No post found. Maybe create one?</h2>
+          <Button to="/post/new">Share Post</Button>
         </Card>
       </div>
     );
@@ -28,7 +28,7 @@ const PostList = props => {
           description={post.description}
           address={post.address}
           creatorId={post.creator}
-          coordinates={ppostace.location}
+          coordinates={post.location}
           onDelete={props.onDeletePost}
         />
       ))}
