@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Card from '../../shared/components/UIElements/Card';
-import PlaceItem from './PlaceItem';
+import PostItem from './PostItem';
 import Button from '../../shared/components/FormElements/Button';
 import './PostList.css';
 
@@ -20,7 +20,7 @@ const PostList = props => {
   return (
     <ul className="post-list">
       {props.items.map(post => (
-        <PlaceItem
+        <PostItem
           key={post.id}
           id={post.id}
           image={post.image}
@@ -28,7 +28,7 @@ const PostList = props => {
           description={post.description}
           address={post.address}
           creatorId={post.creator}
-          coordinates={ppostace.location}
+          coordinates={post.location}
           onDelete={props.onDeletePost}
         />
       ))}
