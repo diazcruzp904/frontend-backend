@@ -48,7 +48,7 @@ const signup = async (req, res, next) => {
   const createdUser = new User({
     name,
     email,
-    image: 'https://live.staticflickr.com/7631/26849088292_36fc52ee90_b.jpg',
+    image: 'https://www.dorsey.edu/wp-content/uploads/2019/05/how-long-does-it-take-to-become-a-cosmetologist-1024x597.png',
     password,
     post: []
   });
