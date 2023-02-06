@@ -3,7 +3,7 @@ const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 
 const HttpError = require('../models/http-error');
-const getCoordsForAddress = require('../util/location');
+/* const getCoordsForAddress = require('../util/location'); */
 const Post = require('../models/post');
 const User = require('../models/user');
 
@@ -65,22 +65,13 @@ const createPost = async (req, res, next) => {
     );
   }
 
-  const { title, description, address, creator } = req.body;
-
-  let coordinates;
-  try {
-    coordinates = await getCoordsForAddress(address);
-  } catch (error) {
-    return next(error);
-  }
+  const { title, description, creator } = req.body;
 
   const createdPost = new Post({
     title,
     description,
-    address,
-    location: coordinates,
     image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Empire_State_Building_%28aerial_view%29.jpg/400px-Empire_State_Building_%28aerial_view%29.jpg', // => File Upload module, will be replaced with real image url
+      'https://en.wikipedia.org/wiki/Cosmetology#/media/File:Elisabeth-Sigmund1957-Schweden.jpg', // => File Upload module, will be replaced with real image url
     creator
   });
 

@@ -26,9 +26,7 @@ const PostList = props => {
           image={post.image}
           title={post.title}
           description={post.description}
-          address={post.address}
           creatorId={post.creator}
-          coordinates={post.location}
           onDelete={props.onDeletePost}
         />
       ))}

@@ -27,10 +27,6 @@ const NewPost = () => {
         value: '',
         isValid: false
       },
-      address: {
-        value: '',
-        isValid: false
-      }
     },
     false
   );
@@ -46,7 +42,6 @@ const NewPost = () => {
         JSON.stringify({
           title: formState.inputs.title.value,
           description: formState.inputs.description.value,
-          address: formState.inputs.address.value,
           creator: auth.userId
         }),
         { 'Content-Type': 'application/json' }
@@ -75,14 +70,6 @@ const NewPost = () => {
           label="Description"
           validators={[VALIDATOR_MINLENGTH(5)]}
           errorText="Please enter a valid description (at least 5 characters)."
-          onInput={inputHandler}
-        />
-        <Input
-          id="address"
-          element="input"
-          label="Address"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid address."
           onInput={inputHandler}
         />
         <Button type="submit" disabled={!formState.isValid}>
