@@ -97,7 +97,7 @@ const createPost = async (req, res, next) => {
     const sess = await mongoose.startSession();
     sess.startTransaction();
     await createdPost.save({ session: sess }); 
-    user.places.push(createdPlace); 
+    user.post.push(createdPost); 
     await user.save({ session: sess }); 
     await sess.commitTransaction();
   } catch (err) {
