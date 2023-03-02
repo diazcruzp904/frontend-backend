@@ -45,7 +45,7 @@ const PostItem = props => {
       <Modal
         show={showMap}
         onCancel={closeMapHandler}
-        header={props.address}
+        header={props.title}
         contentClass="post-item__modal-content"
         footerClass="post-item__modal-actions"
         footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
@@ -83,7 +83,6 @@ const PostItem = props => {
           </div>
           <div className="post-item__info">
             <h2>{props.title}</h2>
-            <h3>{props.address}</h3>
             <p>{props.description}</p>
           </div>
           <div className="post-item__actions">

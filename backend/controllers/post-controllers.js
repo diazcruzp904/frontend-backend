@@ -71,7 +71,7 @@ const createPost = async (req, res, next) => {
     title,
     description,
     image:
-      'https://en.wikipedia.org/wiki/Cosmetology#/media/File:Elisabeth-Sigmund1957-Schweden.jpg', // => File Upload module, will be replaced with real image url
+      'https://www.dorsey.edu/wp-content/uploads/2019/05/how-long-does-it-take-to-become-a-cosmetologist-1024x597.png', // => File Upload module, will be replaced with real image url
     creator
   });
 
