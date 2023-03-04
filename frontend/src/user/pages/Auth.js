@@ -66,8 +66,6 @@ const Auth = () => {
 
   const authSubmitHandler = async event => {
     event.preventDefault();
-    
-    console.log(formState.inputs);
 
     if (isLoginMode) {
       try {
@@ -121,8 +119,13 @@ const Auth = () => {
             />
           )}
           {!isLoginMode && (
-            <ImageUpload center id="image" onInput={inputHandler} />
-            )}
+            <ImageUpload 
+              center 
+              id="image" 
+              onInput={inputHandler} 
+              errorText="Please provide an image."
+            />
+          )}
           <Input
             element="input"
             id="email"

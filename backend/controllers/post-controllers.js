@@ -1,9 +1,11 @@
+const fs = require('fs');
+
 const uuid = require('uuid/v4');
 const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 
 const HttpError = require('../models/http-error');
-/* const getCoordsForAddress = require('../util/location'); */
+
 const Post = require('../models/post');
 const User = require('../models/user');
 
@@ -71,7 +73,7 @@ const createPost = async (req, res, next) => {
     title,
     description,
     image:
-      'https://www.dorsey.edu/wp-content/uploads/2019/05/how-long-does-it-take-to-become-a-cosmetologist-1024x597.png', // => File Upload module, will be replaced with real image url
+      req.file.path,
     creator
   });
 
@@ -168,6 +170,8 @@ const deletePost = async (req, res, next) => {
     return next(error);
   }
 
+  const imagePath = post.image;
+
   try {
     const sess = await mongoose.startSession();
     sess.startTransaction();
@@ -182,6 +186,10 @@ const deletePost = async (req, res, next) => {
     );
     return next(error);
   }
+
+  fs.unlink(imagePath, err => {
+    console.log(err);
+  });
   
   res.status(200).json({ message: 'Deleted post.' });
 };
