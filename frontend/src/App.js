@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -6,14 +6,21 @@ import {
   Switch
 } from 'react-router-dom';
 
-import Users from './user/pages/Users';
-import NewPost from './post/pages/NewPost';
-import UserPost from './post/pages/UserPost';
-import UpdatePost from './post/pages/UpdatePost';
-import Auth from './user/pages/Auth';
+//import Users from './user/pages/Users';
+//import NewPost from './post/pages/NewPost';
+//import UserPost from './post/pages/UserPost';
+//import UpdatePost from './post/pages/UpdatePost';
+//import Auth from './user/pages/Auth';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
+import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
+
+const Users = React.lazy(() => import('./user/pages/Users'));
+const NewPost = React.lazy(() => import('./post/pages/NewPost'));
+const UserPost = React.lazy(() => import('./post/pages/UserPost'));
+const UpdatePost = React.lazy(() => import('./post/pages/UpdatePost'));
+const Auth = React.lazy(() => import('./user/pages/Auth'));
 
 const App = () => {
 
@@ -68,7 +75,17 @@ const App = () => {
     >
       <Router>
         <MainNavigation />
-        <main>{routes}</main>
+        <main>
+          <Suspense
+            fallback={
+            <div className="center">
+              <LoadingSpinner />
+            </div>
+            }
+          >
+            {routes}
+          </Suspense>
+        </main>
       </Router>
     </AuthContext.Provider>
   );
