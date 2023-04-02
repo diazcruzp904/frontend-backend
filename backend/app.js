@@ -50,7 +50,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    `mongodb+srv://Admin:Fullstack@fullstack.4mwirig.mongodb.net/test`, 
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@fullstack.4mwirig.mongodb.net/${process.env.DB_NAME}`, 
     { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
   )
   .then(() => {

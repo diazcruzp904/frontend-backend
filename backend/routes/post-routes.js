@@ -1,5 +1,6 @@
 const express = require('express');
 const { check } = require('express-validator');
+const checkAuth = require('../middleware/check-auth');
 
 const postControllers = require('../controllers/post-controllers');
 const fileUpload = require('../middleware/file-Upload');
@@ -9,6 +10,8 @@ const router = express.Router();
 router.get('/:pid', postControllers.getPostById);
 
 router.get('/user/:uid', postControllers.getPostByUserId);
+
+router.use(checkAuth);
 
 router.post(
   '/',

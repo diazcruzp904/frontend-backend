@@ -32,8 +32,12 @@ const PostItem = props => {
     setShowConfirmModal(false);
     try {
       await sendRequest(
-        `http://localhost:5000/api/post/${props.id}`,
-        'DELETE'
+        process.env.REACT_APP_BACKEND_URL + `/post/${props.id}`,
+        'DELETE',
+        null,
+        {
+          Authorization: 'Bearer ' + auth.token
+        }
       );
       props.onDelete(props.id);
     } catch (err) {}
@@ -79,7 +83,10 @@ const PostItem = props => {
         <Card className="post-item__content">
           {isLoading && <LoadingSpinner asOverlay />}
           <div className="post-item__image">
-            <img src={`http://localhost:5000/${props.image}`} alt={props.title} />
+            <img
+             src={`${process.env.REACT_APP_ASSET_URL}/${props.image}`}
+             alt={props.title}
+             />
           </div>
           <div className="post-item__info">
             <h2>{props.title}</h2>

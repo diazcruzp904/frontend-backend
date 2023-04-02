@@ -45,12 +45,12 @@ const NewPost = () => {
       formData.append('title', formState.inputs.title.value);
       formData.append('description', formState.inputs.description.value);
       formData.append('image', formState.inputs.image.value);
-      formData.append('creator', auth.userId);
       await sendRequest(
-        'http://localhost:5000/api/post',
+        process.env.REACT_APP_BACKEND_URL + '/post',
         'POST',
-        formData
-      );
+        formData, {
+          Authorization: 'Bearer ' + auth.token
+      });
       history.push('/');
     } catch (err) {}
   };

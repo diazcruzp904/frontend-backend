@@ -1,0 +1,8 @@
+{
+    "env": {
+        "DB_USER": "Admin",
+        "DB_PASSWORD": "Fullstack",
+        "DB_NAME": "main",
+        "JWT_KEY": "full_Stack_Dev"
+    }
+}

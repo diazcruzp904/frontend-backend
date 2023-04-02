@@ -74,12 +74,12 @@ const createPost = async (req, res, next) => {
     description,
     image:
       req.file.path,
-    creator
+    creator: req.userData.userId
   });
 
   let user;
   try {
-    user = await User.findById(creator);
+    user = await User.findById(req.userData.userId);
   } catch (err) {
     const error = new HttpError(
       'Creating place failed, please try again.',
@@ -135,6 +135,14 @@ const updatePost = async (req, res, next) => {
     return next(error);
   }
 
+  if (post.creator.toString() !== req.userData.userId) {
+    const error = new HttpError(
+      'you are not allowed to edit this post',
+      401
+    );
+    return next(error);
+  }
+
   post.title = title;
   post.description = description;
 
@@ -168,6 +176,14 @@ const deletePost = async (req, res, next) => {
   if (!post) {
     const error = new HttpError('Could not find post for this id.', 404);
     return next(error);
+  }
+
+  if (post.creator.id !== req.userData.userId) {
+    const error = new HttpError(
+        'you are not allowed to delete this post',
+        401
+      );
+      return next(error);
   }
 
   const imagePath = post.image;

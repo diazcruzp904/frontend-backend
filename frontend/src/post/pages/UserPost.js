@@ -16,7 +16,7 @@ const UserPost = () => {
     const fetchPost = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/post/user/${userId}`
+          `${process.env.REACT_APP_BACKEND_URL}/post/user/${userId}`
         );
         setLoadedPost(responseData.post);
       } catch (err) {}

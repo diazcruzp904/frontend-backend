@@ -40,7 +40,7 @@ const UpdatePost = () => {
     const fetchPost = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/post/${postId}`
+          `${process.env.REACT_APP_BACKEND_URL}/post/${postId}`
         );
         setLoadedPost(responseData.post);
         setFormData(
@@ -66,14 +66,15 @@ const UpdatePost = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        `http://localhost:5000/api/post/${postId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/post/${postId}`,
         'PATCH',
         JSON.stringify({
           title: formState.inputs.title.value,
           description: formState.inputs.description.value
         }),
         {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + auth.token
         }
       );
       history.push('/' + auth.userId + '/post');
